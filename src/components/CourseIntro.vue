@@ -34,7 +34,8 @@ export default {
         },
         toggleCurrent() {
             // this.current = !this.current;
-            this.isCurrent = !this.isCurrent;
+            // this.isCurrent = !this.isCurrent;
+            this.emitter.emit('toggle-current', this.id)
         }
     }
 }
