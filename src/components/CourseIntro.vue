@@ -1,7 +1,8 @@
 <template>
     <li>
-        <h2>{{ id }}</h2>
+        <h2>{{ id }}-Current:{{ current }}-isCurrent:{{ isCurrent }}</h2>
         <button @click="toggleCourseDetail">show detail</button>
+        <button @click="toggleCurrent">toggle isCurrent status</button>
         <ul v-if="detailsVisible">
             <li>{{ name }}</li>
             <li>{{ duration }}</li>
@@ -11,10 +12,20 @@
 
 <script>
 export default {
-    props: ["id", "name", "duration", "current"],
+    props: {
+        id: { type: String, required: true },
+        name: { type: String, required: true },
+        duration: {
+            type: String, required: true, validator: function (value) {
+                return parseInt(value) > 7
+            }
+        },
+        current: { type: String, required: false, default: "false" }
+    },
     data() {
         return {
-            detailsVisible: true
+            detailsVisible: true,
+            isCurrent: this.current
         }
     },
     methods: {
@@ -23,6 +34,7 @@ export default {
         },
         toggleCurrent() {
             // this.current = !this.current;
+            this.isCurrent = !this.isCurrent;
         }
     }
 }
