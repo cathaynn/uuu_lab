@@ -16,11 +16,11 @@ export default {
         id: { type: String, required: true },
         name: { type: String, required: true },
         duration: {
-            type: String, required: true, validator: function (value) {
-                return parseInt(value) > 7
+            type: Number, required: true, validator: function (value) {
+                return value > 7
             }
         },
-        current: { type: String, required: false, default: "false" }
+        current: { type: Boolean, required: false, default: false }
     },
     data() {
         return {
